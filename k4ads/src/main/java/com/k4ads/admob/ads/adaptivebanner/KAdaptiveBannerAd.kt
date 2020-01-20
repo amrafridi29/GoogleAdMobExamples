@@ -1,10 +1,7 @@
-package com.example.googleadmobappexample.ads.adaptivebanner
+package com.k4ads.admob.ads.adaptivebanner
 
-import android.animation.ValueAnimator
 import android.util.DisplayMetrics
 import android.view.Display
-import android.view.View
-import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle

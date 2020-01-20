@@ -1,7 +1,7 @@
-package com.example.googleadmobappexample.ads.interstitial
+package com.k4ads.admob.ads.interstitial
 
 import android.app.Application
-import com.example.googleadmobappexample.exceptions.InterstitialAdIdNullException
+import com.k4ads.admob.exceptions.InterstitialAdIdNullException
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd

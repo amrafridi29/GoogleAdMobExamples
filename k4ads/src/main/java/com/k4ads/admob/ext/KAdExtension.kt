@@ -1,4 +1,4 @@
-package com.example.googleadmobappexample.ext
+package com.k4ads.admob.ext
 
 import android.view.View
 import android.view.ViewGroup

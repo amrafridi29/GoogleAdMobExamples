@@ -1,7 +1,7 @@
 package com.example.googleadmobappexample
 
 import android.app.Application
-import com.example.googleadmobappexample.ads.interstitial.KInterstitialAd
+import com.k4ads.admob.ads.interstitial.KInterstitialAd
 
 class App : Application(){
 

@@ -1,6 +1,5 @@
-package com.example.googleadmobappexample.ads.nativead
+package com.k4ads.admob.ads.nativead
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.example.googleadmobappexample.ext.initView
+import com.k4ads.admob.ext.initView
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.formats.*
 

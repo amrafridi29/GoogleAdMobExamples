@@ -1,4 +1,4 @@
-package com.example.googleadmobappexample.exceptions
+package com.k4ads.admob.exceptions
 
 class InterstitialAdIdNullException : Exception(){
     override val message: String

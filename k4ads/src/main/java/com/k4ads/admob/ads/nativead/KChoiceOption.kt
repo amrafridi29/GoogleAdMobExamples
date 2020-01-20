@@ -1,4 +1,4 @@
-package com.example.googleadmobappexample.ads.nativead
+package com.k4ads.admob.ads.nativead
 
 
 enum class KChoiceOption{

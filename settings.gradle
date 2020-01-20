@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':k4ads'
 rootProject.name='GoogleAdmobAppExample'

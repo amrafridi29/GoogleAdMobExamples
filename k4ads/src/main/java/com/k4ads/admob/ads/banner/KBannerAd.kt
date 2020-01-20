@@ -1,7 +1,6 @@
-package com.example.googleadmobappexample.ads.banner
+package com.k4ads.admob.ads.banner
 
 import android.animation.ValueAnimator
-import android.content.Context
 import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator

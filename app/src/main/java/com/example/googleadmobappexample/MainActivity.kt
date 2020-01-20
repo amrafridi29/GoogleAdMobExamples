@@ -1,18 +1,17 @@
 package com.example.googleadmobappexample
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import com.example.googleadmobappexample.ads.adaptivebanner.KAdaptiveBannerAd
-import com.example.googleadmobappexample.ads.banner.KBannerAd
-import com.example.googleadmobappexample.ads.interstitial.KInterstitialAd
-import com.example.googleadmobappexample.ads.nativead.KChoiceOption
-import com.example.googleadmobappexample.ads.nativead.KNativeAd
-import com.example.googleadmobappexample.ads.nativead.OnAdListener
+import com.k4ads.admob.ads.adaptivebanner.KAdaptiveBannerAd
+import com.k4ads.admob.ads.banner.KBannerAd
+import com.k4ads.admob.ads.interstitial.KInterstitialAd
+import com.k4ads.admob.ads.nativead.KChoiceOption
+import com.k4ads.admob.ads.nativead.KNativeAd
+import com.k4ads.admob.ads.nativead.OnAdListener
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -37,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             with(this@MainActivity)
             setAdChoiceOption(KChoiceOption.TOP_LEFT)
             setContainer(fmContainer)
-            setNativeAdViewBinder(com.example.googleadmobappexample.ads.nativead.KNativeAdViewBinder.Builder().apply {
+            setNativeAdViewBinder(com.k4ads.admob.ads.nativead.KNativeAdViewBinder.Builder().apply {
                 setAdView(R.layout.native_grid_ad)
                 setUnifiedAdViewId(R.id.uniform)
                 setHeadLineTextId(R.id.ad_headline)

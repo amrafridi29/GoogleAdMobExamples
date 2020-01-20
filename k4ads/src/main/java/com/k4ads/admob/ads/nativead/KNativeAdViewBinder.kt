@@ -1,4 +1,4 @@
-package com.example.googleadmobappexample.ads.nativead
+package com.k4ads.admob.ads.nativead
 
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
