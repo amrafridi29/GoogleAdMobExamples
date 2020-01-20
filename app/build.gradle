@@ -33,6 +33,7 @@ android {
             buildConfigField "String" , "NATIVE_AD_ID" , TEST_NATIVE_AD_ID
             buildConfigField "String" , "BANNER_AD_ID" , TEST_BANNER_AD_ID
             buildConfigField "String" , "INTERSTITIAL_AD_ID" , TEST_INTERSTITIAL_AD_ID
+            buildConfigField "String" , "ADAPTIVE_BANNER_AD_ID" , TEST_ADAPTIVE_BANNER_AD_ID
 
         }
     }

@@ -1,13 +1,12 @@
-package com.example.googleadmobappexample
+package com.example.googleadmobappexample.ads.nativead
 
-import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 
-data class NativeAdViewBinder(
+data class KNativeAdViewBinder(
     @LayoutRes
     val adLayoutId : Int,
-    val nativeAdId : String ,
+    val nativeAdId : String,
     @IdRes
     val unifiedAdViewId  : Int,
 
@@ -18,7 +17,7 @@ data class NativeAdViewBinder(
     @IdRes
     val descriptionTextId : Int,
     @IdRes
-    val sourceTextId : Int,
+    val appStoreTextId : Int,
     @IdRes
     val brandingLogoImageId : Int,
     @IdRes
@@ -26,7 +25,11 @@ data class NativeAdViewBinder(
     @IdRes
     val adImageId : Int,
     @IdRes
-    val callToActionViewId : Int
+    val callToActionViewId : Int,
+    @IdRes
+    val adPriceTextId : Int,
+    @IdRes
+    val adAdvertiserTextId : Int
 ){
     class Builder{
         @LayoutRes
@@ -40,7 +43,7 @@ data class NativeAdViewBinder(
         @IdRes
         private var descriptionTextId : Int = 0
         @IdRes
-        private var sourceTextId : Int= 0
+        private var appStoreTextId : Int= 0
         @IdRes
         private var brandingLogoImageId : Int =0
         @IdRes
@@ -52,30 +55,43 @@ data class NativeAdViewBinder(
 
         private var nativeAdId : String = ""
 
+        @IdRes
+        private var adPriceTextId : Int = 0
+
+        @IdRes
+        private var adAdvertiserTextId : Int = 0
+
         fun setAdView( adLayoutId: Int) = apply { this.adLayoutId = adLayoutId }
         fun setNativeAdId(nativeAdId: String) = apply { this.nativeAdId = nativeAdId }
         fun setUnifiedAdViewId(@IdRes unifiedAdViewId : Int) = apply { this.unifiedAdViewId = unifiedAdViewId }
         fun setAdMediaId(@IdRes adMediaId: Int ) = apply { this.adMediaId = adMediaId }
         fun setHeadLineTextId(@IdRes headLineTextId: Int) = apply { this.headLineTextId = headLineTextId }
         fun setDescriptionTextId(@IdRes descriptionTextId: Int) = apply { this.descriptionTextId = descriptionTextId }
-        fun setSourceTextId(@IdRes  sourceTextId: Int) = apply { this.sourceTextId = sourceTextId }
+        fun setAppStoreTextId(@IdRes  sourceTextId: Int) = apply { this.appStoreTextId = sourceTextId }
         fun setBrandingLogoImageId(@IdRes brandingLogoImageId: Int) = apply { this.brandingLogoImageId = brandingLogoImageId }
         fun setAppStartRatingImageId(@IdRes appStarRatingImageId: Int) = apply { this.appStarRatingImageId = appStarRatingImageId }
         fun setAdImageId(@IdRes adImageId: Int) = apply { this.adImageId = adImageId }
         fun setCallToActionViewId(@IdRes callToActionViewId: Int) = apply { this.callToActionViewId = callToActionViewId }
+        fun setAdPriceTextId(@IdRes adPriceTextId: Int) = apply { this.adPriceTextId = adPriceTextId }
+        fun setAdAdvertiserTextId(@IdRes adAdvertiserTextId: Int) = apply { this.adAdvertiserTextId = adAdvertiserTextId }
 
-        fun build() = NativeAdViewBinder(
-            adLayoutId,
-            nativeAdId,
-            unifiedAdViewId,
-            adMediaId,
-            headLineTextId,
-            descriptionTextId,
-            sourceTextId,
-            brandingLogoImageId,
-            appStarRatingImageId,
-            adImageId,
-            callToActionViewId)
+
+        fun build() =
+            KNativeAdViewBinder(
+                adLayoutId,
+                nativeAdId,
+                unifiedAdViewId,
+                adMediaId,
+                headLineTextId,
+                descriptionTextId,
+                appStoreTextId,
+                brandingLogoImageId,
+                appStarRatingImageId,
+                adImageId,
+                callToActionViewId,
+                adPriceTextId,
+                adAdvertiserTextId
+            )
 
     }
 }

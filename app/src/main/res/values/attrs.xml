@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="KBannerAdView">
+        <attr name="banner_ad_id" format="reference|string"/>
+    </declare-styleable>
+
+    <declare-styleable name="KAdaptiveBannerAdView">
+        <attr name="banner_ad_id"/>
+    </declare-styleable>
+
+</resources>
