@@ -11,6 +11,7 @@ import com.k4ads.admob.ads.banner.KBannerAd
 import com.k4ads.admob.ads.interstitial.KInterstitialAd
 import com.k4ads.admob.ads.nativead.KChoiceOption
 import com.k4ads.admob.ads.nativead.KNativeAd
+import com.k4ads.admob.ads.nativead.KNativeAdViewBinder
 import com.k4ads.admob.ads.nativead.OnAdListener
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,18 +26,18 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             KInterstitialAd.showInterstitial {
-                Toast.makeText(this , "Ad Shows" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Ad Shows", Toast.LENGTH_SHORT).show()
             }
         }
 
-       KAdaptiveBannerAd(this).load(adaptiveAd , BuildConfig.ADAPTIVE_BANNER_AD_ID)
-        KBannerAd(this).loadAd(bannerAd , BuildConfig.BANNER_AD_ID)
+        KAdaptiveBannerAd(this).load(adaptiveAd, BuildConfig.ADAPTIVE_BANNER_AD_ID)
+        KBannerAd(this).loadAd(bannerAd, BuildConfig.BANNER_AD_ID)
 
         KNativeAd.Builder().apply {
             with(this@MainActivity)
             setAdChoiceOption(KChoiceOption.TOP_LEFT)
             setContainer(fmContainer)
-            setNativeAdViewBinder(com.k4ads.admob.ads.nativead.KNativeAdViewBinder.Builder().apply {
+            setNativeAdViewBinder(KNativeAdViewBinder.Builder().apply {
                 setAdView(R.layout.native_grid_ad)
                 setUnifiedAdViewId(R.id.uniform)
                 setHeadLineTextId(R.id.ad_headline)
@@ -47,22 +48,21 @@ class MainActivity : AppCompatActivity() {
                 setNativeAdId(BuildConfig.NATIVE_AD_ID)
             }.build())
             setAdListener {
-                when(it){
-                    is OnAdListener.OnAdLoaded-> it.bindAdView()
-                    is OnAdListener.OnAdFailedToLoad-> {}
-                    is OnAdListener.Loading->{
+                when (it) {
+                    is OnAdListener.OnAdLoaded -> it.bindAdView()
+                    is OnAdListener.OnAdFailedToLoad -> { }
+                    /*is OnAdListener.Loading->{
                         pbLoading.visibility = when(it.isLoading){
                             true -> View.VISIBLE
                             false-> View.GONE
                         }
-                    }
+                    }*/
                 }
             }
         }.build().load()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }

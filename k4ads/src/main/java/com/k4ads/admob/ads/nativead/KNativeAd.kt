@@ -11,6 +11,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import com.k4ads.admob.ext.initView
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.formats.*
+import com.k4ads.admob.ext.expand
 
 data class KNativeAd(
     private var activity: AppCompatActivity,
@@ -33,14 +34,14 @@ data class KNativeAd(
     class Builder{
         private lateinit var container : FrameLayout
         private lateinit var activity : AppCompatActivity
-        private lateinit var KNativeAdViewBinder: KNativeAdViewBinder
+        private lateinit var kNativeAdViewBinder: KNativeAdViewBinder
         private var adKChoiceOption: KChoiceOption =
             KChoiceOption.TOP_LEFT
         private lateinit var adListener: (OnAdListener) -> Unit
 
         fun with(activity: AppCompatActivity) = apply { this.activity = activity }
-        fun setNativeAdViewBinder(KNativeAdViewBinder: KNativeAdViewBinder) = apply {
-            this.KNativeAdViewBinder = KNativeAdViewBinder
+        fun setNativeAdViewBinder(kNativeAdViewBinder: KNativeAdViewBinder) = apply {
+            this.kNativeAdViewBinder = kNativeAdViewBinder
         }
 
         fun setContainer(container: FrameLayout) = apply { this.container = container }
@@ -51,7 +52,7 @@ data class KNativeAd(
         fun build()= KNativeAd(
             activity ,
             container,
-            KNativeAdViewBinder,
+            kNativeAdViewBinder,
             adKChoiceOption,
             adListener
         )
@@ -212,6 +213,7 @@ data class KNativeAd(
 
 
         container.addView(adView)
+        container.expand(500)
 
 
 

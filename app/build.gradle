@@ -17,23 +17,24 @@ android {
     buildTypes {
         release {
 
-            manifestPlaceholders = [googleApplicationId : GOOGLE_APPLICATION_ID]
-            buildConfigField "String" , "NATIVE_AD_ID" , NATIVE_AD_ID
-            buildConfigField "String" , "BANNER_AD_ID" , BANNER_AD_ID
-            buildConfigField "String" , "INTERSTITIAL_AD_ID" , INTERSTITIAL_AD_ID
+            manifestPlaceholders = [googleApplicationId: GOOGLE_APPLICATION_ID]
+            buildConfigField "String", "NATIVE_AD_ID", NATIVE_AD_ID
+            buildConfigField "String", "BANNER_AD_ID", BANNER_AD_ID
+            buildConfigField "String", "INTERSTITIAL_AD_ID", INTERSTITIAL_AD_ID
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug{
-            manifestPlaceholders = [googleApplicationId : TEST_GOOGLE_APPLICATION_ID]
+        debug {
+            manifestPlaceholders = [googleApplicationId: TEST_GOOGLE_APPLICATION_ID]
             //buildConfigField "String" , "GOOGLE_APPLICATION_ID" , GOOGLE_APPLICATION_ID
 
             //manifestPlaceholders.googleApplicationId = GOOGLE_APPLICATION_ID
-            buildConfigField "String" , "NATIVE_AD_ID" , TEST_NATIVE_AD_ID
-            buildConfigField "String" , "BANNER_AD_ID" , TEST_BANNER_AD_ID
-            buildConfigField "String" , "INTERSTITIAL_AD_ID" , TEST_INTERSTITIAL_AD_ID
-            buildConfigField "String" , "ADAPTIVE_BANNER_AD_ID" , TEST_ADAPTIVE_BANNER_AD_ID
+            buildConfigField "String", "NATIVE_AD_ID", TEST_NATIVE_AD_ID
+            buildConfigField "String", "BANNER_AD_ID", TEST_BANNER_AD_ID
+            buildConfigField "String", "INTERSTITIAL_AD_ID", TEST_INTERSTITIAL_AD_ID
+            buildConfigField "String", "ADAPTIVE_BANNER_AD_ID", TEST_ADAPTIVE_BANNER_AD_ID
+            buildConfigField "String", "REWARDED_VIDEO_AD_ID", TEST_REWARDED_VIDEO_AD_ID
 
         }
     }
@@ -41,7 +42,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
