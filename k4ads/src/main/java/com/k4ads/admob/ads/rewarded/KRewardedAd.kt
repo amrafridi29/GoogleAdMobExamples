@@ -1,7 +1,6 @@
 package com.k4ads.admob.ads.rewarded
 
 import android.content.Context
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

@@ -14,6 +14,7 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.k4ads.admob.KInitializer
 
 class KBannerAd(private val activity : AppCompatActivity) : LifecycleObserver {
     private var adView : AdView? =null
@@ -39,12 +40,15 @@ class KBannerAd(private val activity : AppCompatActivity) : LifecycleObserver {
     }
 
 
-    fun loadAd(adContainer: FrameLayout?, adId : String?) {
+    fun loadAd(adContainer: FrameLayout?) {
+        val bannerAd = KInitializer.kAdmob?.bannerAd ?: return
+        bannerAd.adInitAdId ?: return
+        if(KInitializer.kAdmob?.isAdFree == true ||!bannerAd.isShow) return
         adContainer ?: return
         val adView = AdView(activity)
 
         adView.adSize = AdSize.BANNER
-        adView.adUnitId = adId
+        adView.adUnitId = bannerAd.adInitAdId
 
         val adRequest = AdRequest.Builder()
             // .addTestDevice("51D5AFA37D1312927451D193CAFAD12F")

@@ -11,6 +11,7 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.k4ads.admob.KInitializer
 
 class KAdaptiveBannerAd(private val activity: AppCompatActivity) : LifecycleObserver {
     private var adView: AdView? = null
@@ -38,13 +39,17 @@ class KAdaptiveBannerAd(private val activity: AppCompatActivity) : LifecycleObse
 
     }
 
-    fun load(adContainer: FrameLayout?, bannerAdId: String?) {
+    fun load(adContainer: FrameLayout?) {
+        val adaptiveAd = KInitializer.kAdmob?.adaptiveAd ?: return
         adContainer ?: return
-        bannerAdId ?: return
+        adaptiveAd.adInitAdId ?: return
+        if(KInitializer.kAdmob?.isAdFree == true || !adaptiveAd.isShow) return
+
         this.adContainerView = adContainer
 
+
         this.adContainerView?.post {
-            loadBanner(bannerAdId)
+            loadBanner(adaptiveAd.adInitAdId)
         }
     }
 
@@ -61,7 +66,7 @@ class KAdaptiveBannerAd(private val activity: AppCompatActivity) : LifecycleObse
             AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build()
 
-        adView?.adListener = object : AdListener(){
+        adView?.adListener = object : AdListener() {
             override fun onAdLoaded() {
                 super.onAdLoaded()
 

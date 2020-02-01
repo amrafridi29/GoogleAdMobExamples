@@ -6,7 +6,6 @@ import androidx.annotation.LayoutRes
 data class KNativeAdViewBinder(
     @LayoutRes
     val adLayoutId : Int,
-    val nativeAdId : String,
     @IdRes
     val unifiedAdViewId  : Int,
 
@@ -53,7 +52,6 @@ data class KNativeAdViewBinder(
         @IdRes
         private var callToActionViewId : Int = 0
 
-        private var nativeAdId : String = ""
 
         @IdRes
         private var adPriceTextId : Int = 0
@@ -62,7 +60,6 @@ data class KNativeAdViewBinder(
         private var adAdvertiserTextId : Int = 0
 
         fun setAdView( adLayoutId: Int) = apply { this.adLayoutId = adLayoutId }
-        fun setNativeAdId(nativeAdId: String) = apply { this.nativeAdId = nativeAdId }
         fun setUnifiedAdViewId(@IdRes unifiedAdViewId : Int) = apply { this.unifiedAdViewId = unifiedAdViewId }
         fun setAdMediaId(@IdRes adMediaId: Int ) = apply { this.adMediaId = adMediaId }
         fun setHeadLineTextId(@IdRes headLineTextId: Int) = apply { this.headLineTextId = headLineTextId }
@@ -79,7 +76,6 @@ data class KNativeAdViewBinder(
         fun build() =
             KNativeAdViewBinder(
                 adLayoutId,
-                nativeAdId,
                 unifiedAdViewId,
                 adMediaId,
                 headLineTextId,

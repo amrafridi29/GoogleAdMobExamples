@@ -5,6 +5,7 @@ import com.k4ads.admob.exceptions.InterstitialAdIdNullException
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
+import com.k4ads.admob.KInitializer
 
 class KInterstitialAd{
 
@@ -13,9 +14,9 @@ class KInterstitialAd{
         private  var onAdListener : ((()-> Unit))? = null
 
 
-        fun initialize(instance : Application, interstitialAdId :String?) {
-            mInterstitialAd = InterstitialAd(instance)
-            mInterstitialAd?.adUnitId = interstitialAdId ?: throw InterstitialAdIdNullException()
+        fun initialize() {
+            mInterstitialAd = InterstitialAd(KInitializer.kAdmob?.interstitialAd?.instance)
+            mInterstitialAd?.adUnitId = KInitializer.kAdmob?.interstitialAd?.adUnitId ?: throw InterstitialAdIdNullException()
 
             mInterstitialAd?.adListener = object : AdListener() {
                 override fun onAdFailedToLoad(i: Int) {
@@ -43,14 +44,18 @@ class KInterstitialAd{
 
         fun showInterstitial(listener : (()-> Unit)?) {
             onAdListener = listener
-            mInterstitialAd?.let {
-                if(it.isLoaded){
-                    it.show()
-                }else{
-                    //loadInterstitial()
-                    onAdListener?.invoke()
-                }
-            } ?: onAdListener?.invoke()
+            if(KInitializer.kAdmob?.isAdFree == true ||KInitializer.kAdmob?.interstitialAd?.isShow==false){
+                onAdListener?.invoke()
+            }else {
+                mInterstitialAd?.let {
+                    if (it.isLoaded) {
+                        it.show()
+                    } else {
+                        //loadInterstitial()
+                        onAdListener?.invoke()
+                    }
+                } ?: onAdListener?.invoke()
+            }
         }
 
     }

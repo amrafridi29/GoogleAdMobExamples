@@ -11,6 +11,8 @@ import androidx.lifecycle.OnLifecycleEvent
 import com.k4ads.admob.ext.initView
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.formats.*
+import com.k4ads.admob.KInitializer
+import com.k4ads.admob.NativeAd
 import com.k4ads.admob.ext.expand
 
 data class KNativeAd(
@@ -60,20 +62,17 @@ data class KNativeAd(
 
 
     fun load(){
+        val nativeAd  = KInitializer.kAdmob?.nativeAd ?: return
+        nativeAd.adUnitId ?: return
+        if(KInitializer.kAdmob?.isAdFree == true || !nativeAd.isShow) return
+
         adListener(OnAdListener.Loading(true))
-        val builder = AdLoader.Builder(activity, KNativeAdViewBinder.nativeAdId)
+        val builder = AdLoader.Builder(activity, nativeAd.adUnitId)
         builder.forUnifiedNativeAd { unifiedNativeAd ->
             this.unifiedNativeAd = unifiedNativeAd
-            adListener(
-                OnAdListener.OnAdLoaded(
-                    this
-                )
-            )
-            adListener(
-                OnAdListener.Loading(
-                    false
-                )
-            )
+            adListener(OnAdListener.OnAdLoaded(this))
+            adListener(OnAdListener.Loading(
+                    false))
         }
 
         val videoOptions = VideoOptions.Builder()
@@ -88,17 +87,8 @@ data class KNativeAd(
 
         val adLoader = builder.withAdListener(object :AdListener(){
             override fun onAdFailedToLoad(p0: Int) {
-                adListener(
-                    OnAdListener.OnAdFailedToLoad(
-                        p0,
-                        this@KNativeAd
-                    )
-                )
-                adListener(
-                    OnAdListener.Loading(
-                        false
-                    )
-                )
+                adListener(OnAdListener.OnAdFailedToLoad(p0, this@KNativeAd))
+                adListener(OnAdListener.Loading(false))
             }
         } ).withNativeAdOptions(
             NativeAdOptions.Builder()
@@ -213,7 +203,7 @@ data class KNativeAd(
 
 
         container.addView(adView)
-        container.expand(500)
+        //container.expand(500)
 
 
 
