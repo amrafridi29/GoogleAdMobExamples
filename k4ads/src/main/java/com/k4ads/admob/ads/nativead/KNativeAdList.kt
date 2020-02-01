@@ -16,6 +16,7 @@ data class KNativeAdList(
 ) {
 
     class Builder {
+
         private var adKChoiceOption: KChoiceOption =
             KChoiceOption.TOP_LEFT
         private lateinit var context: Context
@@ -23,9 +24,12 @@ data class KNativeAdList(
         fun setAdChoiceOption(adKChoiceOption: KChoiceOption) =
             apply { this.adKChoiceOption = adKChoiceOption }
 
+
+
         fun with(context: Context) = apply { this.context = context }
         fun setMaxLoad(maxLoad: Int) = apply { this.maxLoad = maxLoad }
-        fun build() = KNativeAdList(context, maxLoad, adKChoiceOption).loadAds().getNativeAdList()
+        fun build() = KNativeAdList(context, maxLoad, adKChoiceOption)
+            .loadAds()
     }
 
     private var adLoader: AdLoader? = null
@@ -56,5 +60,6 @@ data class KNativeAdList(
         adLoader?.loadAds(AdRequest.Builder().build(), maxLoad)
     }
 
-    fun getNativeAdList() = mNativeAds
+    fun getUnifiedNativeAdList() = mNativeAds
+
 }

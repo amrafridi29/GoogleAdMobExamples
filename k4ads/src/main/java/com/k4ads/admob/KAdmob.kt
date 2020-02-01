@@ -2,6 +2,7 @@ package com.k4ads.admob
 
 import android.app.Application
 import com.k4ads.admob.ads.interstitial.KInterstitialAd
+import com.k4ads.admob.ads.nativead.KNativeAdList
 
 class KAdmob(val isAdFree : Boolean,
             val interstitialAd: InterstitialAd?,
@@ -16,6 +17,7 @@ class KAdmob(val isAdFree : Boolean,
         private var bannerAd: BannerAd? =null
         private var adaptiveAd: AdaptiveAd? =null
         private var rewardedAd: RewardedAd? =null
+
 
         fun setAdFree(isAdFree: Boolean) = apply { this.isAdFree = isAdFree }
         fun setInterstitialAd(interstitialAd: InterstitialAd?) = apply { this.interstitialAd = interstitialAd }
