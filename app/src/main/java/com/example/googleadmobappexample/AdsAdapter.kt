@@ -69,10 +69,9 @@ class AdsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         fun onBind(unifiedNativeAd: UnifiedNativeAd){
             KNativeAdBinder.Builder().apply {
                 with(itemView.context)
-                setAdView(itemView as ViewGroup)
+                setViewGroup(itemView as ViewGroup)
                 setUnifiedNativeAd(unifiedNativeAd)
                 setNativeAdViewBinder(KNativeAdViewBinder.Builder().apply {
-                    setAdView(R.layout.native_banner_opt_ad)
                     setUnifiedAdViewId(R.id.uniform)
                     setHeadLineTextId(R.id.ad_headline)
                     setDescriptionTextId(R.id.ad_body)

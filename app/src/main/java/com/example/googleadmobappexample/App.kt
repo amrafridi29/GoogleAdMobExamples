@@ -4,6 +4,7 @@ import android.app.Application
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.k4ads.admob.*
 import com.k4ads.admob.ads.interstitial.KInterstitialAd
+import com.k4ads.admob.ads.nativead.KChoiceOption
 import com.k4ads.admob.ads.nativead.KNativeAdList
 
 class App : Application(){
@@ -49,6 +50,7 @@ class App : Application(){
 
         list = KNativeAdList.Builder()
             .with(instance)
+            .setAdChoiceOption(KChoiceOption.TOP_LEFT)
             .setMaxLoad(5)
             .build()
 

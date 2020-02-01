@@ -90,7 +90,7 @@ data class KNativeAd(
                 adListener(OnAdListener.OnAdFailedToLoad(p0, this@KNativeAd))
                 adListener(OnAdListener.Loading(false))
             }
-        } ).withNativeAdOptions(
+        }).withNativeAdOptions(
             NativeAdOptions.Builder()
                 .setRequestCustomMuteThisAd(true)
                 .setAdChoicesPlacement(

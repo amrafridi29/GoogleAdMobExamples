@@ -13,32 +13,31 @@ import com.google.android.gms.ads.formats.UnifiedNativeAdView
 import com.k4ads.admob.ext.initView
 
 data class KNativeAdBinder(
-    val context : Context,
-    val adView : ViewGroup?,
-    val unifiedNativeAd: UnifiedNativeAd?,
-    val kNativeAdViewBinder: KNativeAdViewBinder){
+    private val context : Context,
+    private val viewGroup : ViewGroup?,
+    private val unifiedNativeAd: UnifiedNativeAd?,
+    private val kNativeAdViewBinder: KNativeAdViewBinder){
 
     private  var unifiedNativeAdView: UnifiedNativeAdView? =null
     class Builder {
-        private var adView : ViewGroup? =null
+
+        private var viewGroup : ViewGroup? =null
         private lateinit var context: Context
         private var unifiedNativeAd : UnifiedNativeAd? = null
         private lateinit var kNativeAdViewBinder : KNativeAdViewBinder
         fun with(context: Context) = apply { this.context = context }
-        fun setAdView(adView: ViewGroup?) = apply { this.adView = adView }
+        fun setViewGroup(viewGroup : ViewGroup?) = apply { this.viewGroup = viewGroup }
         fun setUnifiedNativeAd(unifiedNativeAd: UnifiedNativeAd) = apply { this.unifiedNativeAd = unifiedNativeAd }
         fun setNativeAdViewBinder(kNativeAdViewBinder: KNativeAdViewBinder) = apply { this.kNativeAdViewBinder = kNativeAdViewBinder }
-
         fun build() = KNativeAdBinder(context ,
-            adView,
+            viewGroup,
+
             unifiedNativeAd ,
             kNativeAdViewBinder)
     }
 
      fun bindAdView(){
-        //val adView = LayoutInflater.from(context).inflate(kNativeAdViewBinder?.adLayoutId , null , false) as ViewGroup
-        unifiedNativeAdView = adView?.initView(kNativeAdViewBinder.unifiedAdViewId, UnifiedNativeAdView::class.java)
-
+        unifiedNativeAdView = viewGroup?.initView(kNativeAdViewBinder.unifiedAdViewId, UnifiedNativeAdView::class.java)
         unifiedNativeAdView?.mediaView = unifiedNativeAdView?.initView(kNativeAdViewBinder.adMediaId , MediaView::class.java)
         unifiedNativeAdView?.mediaView?.setMediaContent(unifiedNativeAd?.mediaContent)
         unifiedNativeAdView?.mediaView?.setImageScaleType(ImageView.ScaleType.FIT_XY)
@@ -127,8 +126,5 @@ data class KNativeAdBinder(
                 }
             }
         }
-
-
-        //container?.addView(adView)
     }
 }

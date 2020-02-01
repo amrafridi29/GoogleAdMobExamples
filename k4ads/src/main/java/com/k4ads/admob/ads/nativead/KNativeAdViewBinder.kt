@@ -59,7 +59,7 @@ data class KNativeAdViewBinder(
         @IdRes
         private var adAdvertiserTextId : Int = 0
 
-        fun setAdView( adLayoutId: Int) = apply { this.adLayoutId = adLayoutId }
+        fun setAdView(adLayoutId: Int) = apply { this.adLayoutId = adLayoutId }
         fun setUnifiedAdViewId(@IdRes unifiedAdViewId : Int) = apply { this.unifiedAdViewId = unifiedAdViewId }
         fun setAdMediaId(@IdRes adMediaId: Int ) = apply { this.adMediaId = adMediaId }
         fun setHeadLineTextId(@IdRes headLineTextId: Int) = apply { this.headLineTextId = headLineTextId }
