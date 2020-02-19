@@ -2,24 +2,22 @@ package com.example.googleadmobappexample
 
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.k4ads.admob.ads.adaptivebanner.KAdaptiveBannerAd
 import com.k4ads.admob.ads.banner.KBannerAd
-import com.k4ads.admob.ads.interstitial.KInterstitialAd
 import com.k4ads.admob.ads.nativead.KChoiceOption
 import com.k4ads.admob.ads.nativead.KNativeAd
 import com.k4ads.admob.ads.nativead.KNativeAdViewBinder
 import com.k4ads.admob.ads.nativead.OnAdListener
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , CallBack{
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,16 +27,22 @@ class MainActivity : AppCompatActivity() {
         val adapter = AdsAdapter()
         rv_items.layoutManager = LinearLayoutManager(this)
         rv_items.adapter = adapter
+
+        supportFragmentManager.beginTransaction().apply {
+
+                add( R.id.ivFrame  ,BlankFragment.newInstnace(),"BlankFragment")
+                commit()
+
+
+        }
         /*fab.setOnClickListener {
             Log.i(this::class.java.simpleName , App.instance.list.toString())
         }*/
         fab.setOnClickListener {
 
             val list = App.instance.getUnifiedNativeAdList()
-
             Log.i(this::class.java.simpleName, list.toString())
             val items = mutableListOf<Any>()
-
             items.add(ItemApp("title"))
             items.add(ItemApp("title"))
             items.add(ItemApp("title"))
@@ -70,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             }*/
         }
 
-        /* KAdaptiveBannerAd(this).load(adaptiveAd)
+         KAdaptiveBannerAd(this).load(adaptiveAd)
          KBannerAd(this).loadAd(bannerAd)
 
          KNativeAd.Builder().apply {
@@ -90,15 +94,15 @@ class MainActivity : AppCompatActivity() {
                  when (it) {
                      is OnAdListener.OnAdLoaded -> it.bindAdView()
                      is OnAdListener.OnAdFailedToLoad -> { }
-                     *//*is OnAdListener.Loading->{
+                     is OnAdListener.Loading->{
                         pbLoading.visibility = when(it.isLoading){
                             true -> View.VISIBLE
                             false-> View.GONE
                         }
-                    }*//*
+                    }
                 }
             }
-        }.build().load()*/
+        }.build().load()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -114,5 +118,9 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onCallback() {
+        Toast.makeText(this, "Callback Toast" , Toast.LENGTH_SHORT).show()
     }
 }

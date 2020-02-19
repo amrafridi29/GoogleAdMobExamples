@@ -43,6 +43,7 @@ class App : Application() {
         KAdmob.Builder().apply {
             setAdFree(false)
             setInterstitialAd(
+
                 InterstitialAd.Builder()
                     .isShow(true)
                     .with(instance)

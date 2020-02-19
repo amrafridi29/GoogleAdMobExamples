@@ -63,11 +63,11 @@ data class KNativeAd(
 
     fun load(){
         val nativeAd  = KInitializer.kAdmob?.nativeAd ?: return
-        nativeAd.adUnitId ?: return
-        if(KInitializer.kAdmob?.isAdFree == true || !nativeAd.isShow) return
+        nativeAd.builder.adUnitId ?: return
+        if(KInitializer.kAdmob?.isAdFree == true || !nativeAd.builder.isShow) return
 
         adListener(OnAdListener.Loading(true))
-        val builder = AdLoader.Builder(activity, nativeAd.adUnitId)
+        val builder = AdLoader.Builder(activity, nativeAd.builder.adUnitId)
         builder.forUnifiedNativeAd { unifiedNativeAd ->
             this.unifiedNativeAd = unifiedNativeAd
             adListener(OnAdListener.OnAdLoaded(this))
@@ -109,18 +109,18 @@ data class KNativeAd(
     }
 
     internal fun bindAdView(){
-        val adView = LayoutInflater.from(activity).inflate(KNativeAdViewBinder.adLayoutId , null , false) as ViewGroup
-        unifiedNativeAdView = adView.initView(KNativeAdViewBinder.unifiedAdViewId, UnifiedNativeAdView::class.java)
+        val adView = LayoutInflater.from(activity).inflate(KNativeAdViewBinder.builder.adLayoutId , null , false) as ViewGroup
+        unifiedNativeAdView = adView.initView(KNativeAdViewBinder.builder.unifiedAdViewId, UnifiedNativeAdView::class.java)
 
-        unifiedNativeAdView?.mediaView = unifiedNativeAdView?.initView(KNativeAdViewBinder.adMediaId , MediaView::class.java)
+        unifiedNativeAdView?.mediaView = unifiedNativeAdView?.initView(KNativeAdViewBinder.builder.adMediaId , MediaView::class.java)
         unifiedNativeAdView?.mediaView?.setMediaContent(unifiedNativeAd?.mediaContent)
         unifiedNativeAdView?.mediaView?.setImageScaleType(ImageView.ScaleType.FIT_XY)
 
-        unifiedNativeAdView?.headlineView = unifiedNativeAdView?.initView(KNativeAdViewBinder.headLineTextId , TextView::class.java)
+        unifiedNativeAdView?.headlineView = unifiedNativeAdView?.initView(KNativeAdViewBinder.builder.headLineTextId , TextView::class.java)
         (unifiedNativeAdView?.headlineView as? TextView)?.text = unifiedNativeAd?.headline
 
 
-        unifiedNativeAdView?.bodyView = unifiedNativeAdView?.initView(KNativeAdViewBinder.descriptionTextId  , TextView::class.java)
+        unifiedNativeAdView?.bodyView = unifiedNativeAdView?.initView(KNativeAdViewBinder.builder.descriptionTextId  , TextView::class.java)
         unifiedNativeAd?.body?.let {
             unifiedNativeAdView?.bodyView?.visibility= View.VISIBLE
             (unifiedNativeAdView?.bodyView as? TextView)?.text = it
@@ -129,7 +129,7 @@ data class KNativeAd(
         }
 
 
-        unifiedNativeAdView?.iconView = unifiedNativeAdView?.initView(KNativeAdViewBinder.adImageId , ImageView::class.java)
+        unifiedNativeAdView?.iconView = unifiedNativeAdView?.initView(KNativeAdViewBinder.builder.adImageId , ImageView::class.java)
 
         unifiedNativeAd?.icon?.let {
             (unifiedNativeAdView?.iconView as? ImageView)?.setImageDrawable(it.drawable)
@@ -139,7 +139,7 @@ data class KNativeAd(
         }
 
 
-        unifiedNativeAdView?.callToActionView = unifiedNativeAdView?.initView(KNativeAdViewBinder.callToActionViewId , Button::class.java)
+        unifiedNativeAdView?.callToActionView = unifiedNativeAdView?.initView(KNativeAdViewBinder.builder.callToActionViewId , Button::class.java)
 
         unifiedNativeAd?.callToAction?.let {
             unifiedNativeAdView?.callToActionView?.visibility = View.VISIBLE
@@ -154,7 +154,7 @@ data class KNativeAd(
             unifiedNativeAdView?.adChoicesView = choicesView
         }
 
-        unifiedNativeAdView?.priceView = unifiedNativeAdView?.initView(KNativeAdViewBinder.adPriceTextId , TextView::class.java)
+        unifiedNativeAdView?.priceView = unifiedNativeAdView?.initView(KNativeAdViewBinder.builder.adPriceTextId , TextView::class.java)
         unifiedNativeAd?.price?.let {
             unifiedNativeAdView?.priceView?.visibility = View.VISIBLE
             (unifiedNativeAdView?.priceView as? TextView)?.text = it
@@ -162,7 +162,7 @@ data class KNativeAd(
             unifiedNativeAdView?.priceView?.visibility = View.GONE
         }
 
-        unifiedNativeAdView?.advertiserView = unifiedNativeAdView?.initView(KNativeAdViewBinder.adAdvertiserTextId , TextView::class.java)
+        unifiedNativeAdView?.advertiserView = unifiedNativeAdView?.initView(KNativeAdViewBinder.builder.adAdvertiserTextId , TextView::class.java)
         unifiedNativeAd?.advertiser?.let {
             unifiedNativeAdView?.advertiserView?.visibility = View.VISIBLE
             (unifiedNativeAdView?.advertiserView as? TextView)?.text = it
@@ -171,7 +171,7 @@ data class KNativeAd(
         }
 
 
-        unifiedNativeAdView?.starRatingView = unifiedNativeAdView?.initView(KNativeAdViewBinder.appStarRatingImageId , RatingBar::class.java)
+        unifiedNativeAdView?.starRatingView = unifiedNativeAdView?.initView(KNativeAdViewBinder.builder.appStarRatingImageId , RatingBar::class.java)
         unifiedNativeAd?.starRating?.let {
             unifiedNativeAdView?.starRatingView?.visibility = View.VISIBLE
             (unifiedNativeAdView?.starRatingView as? RatingBar)?.rating = it.toFloat()
@@ -179,7 +179,7 @@ data class KNativeAd(
             unifiedNativeAdView?.starRatingView?.visibility = View.GONE
         }
 
-        unifiedNativeAdView?.storeView = unifiedNativeAdView?.initView(KNativeAdViewBinder.appStoreTextId , TextView::class.java)
+        unifiedNativeAdView?.storeView = unifiedNativeAdView?.initView(KNativeAdViewBinder.builder.appStoreTextId , TextView::class.java)
         unifiedNativeAd?.store?.let {
             unifiedNativeAdView?.storeView?.visibility = View.VISIBLE
             (unifiedNativeAdView?.storeView as? TextView)?.text = it

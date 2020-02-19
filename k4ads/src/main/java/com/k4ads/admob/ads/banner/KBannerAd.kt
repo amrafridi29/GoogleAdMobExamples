@@ -42,13 +42,13 @@ class KBannerAd(private val activity : AppCompatActivity) : LifecycleObserver {
 
     fun loadAd(adContainer: FrameLayout?) {
         val bannerAd = KInitializer.kAdmob?.bannerAd ?: return
-        bannerAd.adInitAdId ?: return
-        if(KInitializer.kAdmob?.isAdFree == true ||!bannerAd.isShow) return
+        bannerAd.builder.adUnitId ?: return
+        if(KInitializer.kAdmob?.isAdFree == true ||!bannerAd.builder.isShow) return
         adContainer ?: return
         val adView = AdView(activity)
 
         adView.adSize = AdSize.BANNER
-        adView.adUnitId = bannerAd.adInitAdId
+        adView.adUnitId = bannerAd.builder.adUnitId
 
         val adRequest = AdRequest.Builder()
             // .addTestDevice("51D5AFA37D1312927451D193CAFAD12F")

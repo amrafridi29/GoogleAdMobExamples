@@ -42,14 +42,14 @@ class KAdaptiveBannerAd(private val activity: AppCompatActivity) : LifecycleObse
     fun load(adContainer: FrameLayout?) {
         val adaptiveAd = KInitializer.kAdmob?.adaptiveAd ?: return
         adContainer ?: return
-        adaptiveAd.adInitAdId ?: return
-        if(KInitializer.kAdmob?.isAdFree == true || !adaptiveAd.isShow) return
+        adaptiveAd.builder.adUnitId ?: return
+        if(KInitializer.kAdmob?.isAdFree == true || !adaptiveAd.builder.isShow) return
 
         this.adContainerView = adContainer
 
 
         this.adContainerView?.post {
-            loadBanner(adaptiveAd.adInitAdId)
+            loadBanner(adaptiveAd.builder.adUnitId)
         }
     }
 

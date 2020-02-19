@@ -37,7 +37,7 @@ data class KNativeAdList(
 
     fun loadAds() = apply {
         val nativeAd = KInitializer.kAdmob?.nativeAd ?: return@apply
-        val builder: AdLoader.Builder = AdLoader.Builder(context, nativeAd.adUnitId)
+        val builder: AdLoader.Builder = AdLoader.Builder(context, nativeAd.builder.adUnitId)
         adLoader = builder.forUnifiedNativeAd { unifiedNativeAd ->
             mNativeAds.add(unifiedNativeAd)
         }.withAdListener(

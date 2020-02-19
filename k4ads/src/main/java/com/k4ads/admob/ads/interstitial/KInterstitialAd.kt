@@ -15,8 +15,8 @@ class KInterstitialAd{
 
 
         fun initialize() {
-            mInterstitialAd = InterstitialAd(KInitializer.kAdmob?.interstitialAd?.instance)
-            mInterstitialAd?.adUnitId = KInitializer.kAdmob?.interstitialAd?.adUnitId ?: throw InterstitialAdIdNullException()
+            mInterstitialAd = InterstitialAd(KInitializer.kAdmob?.interstitialAd?.builder?.instance)
+            mInterstitialAd?.adUnitId = KInitializer.kAdmob?.interstitialAd?.builder?.adUnitId ?: throw InterstitialAdIdNullException()
 
             mInterstitialAd?.adListener = object : AdListener() {
                 override fun onAdFailedToLoad(i: Int) {
@@ -44,7 +44,7 @@ class KInterstitialAd{
 
         fun showInterstitial(listener : (()-> Unit)?) {
             onAdListener = listener
-            if(KInitializer.kAdmob?.isAdFree == true ||KInitializer.kAdmob?.interstitialAd?.isShow==false){
+            if(KInitializer.kAdmob?.isAdFree == true ||KInitializer.kAdmob?.interstitialAd?.builder?.isShow==false){
                 onAdListener?.invoke()
             }else {
                 mInterstitialAd?.let {
